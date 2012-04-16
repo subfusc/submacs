@@ -14,7 +14,7 @@
 
 (eval-after-load "slime" 
   '(progn
-    (setq common-lisp-hyperspec-root "~/.emacs.d/HyperSpec/HyperSpec/")
+    (setq common-lisp-hyperspec-root (format "%s%s" install_directory "/HyperSpec/HyperSpec/"))
     (add-hook 'slime-mode-hook 
      (lambda ()
        (set-variable lisp-indent-function 'common-lisp-indent-function)
