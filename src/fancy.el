@@ -1,8 +1,6 @@
-(add-to-list 'load-path "~/.emacs-things/single-files")
+(add-to-list 'load-path (format "%s%s" install_directory "single-files"))
 
 (require 'lambda-mode)
-(require 'anything)
-(require 'anything-show-completion)
 (setq lambda-symbol (string (make-char 'greek-iso8859-7 107)))
 
 (add-hook 'lisp-mode-hook #'lambda-mode 1)
