@@ -15,6 +15,7 @@ echo "have individual licenses. Please look at each individual "
 echo "packages homesite for information."
 
 INSTALL_DIRECTORY=$HOME/.submacs/
+DOTEMACS=$HOME/.emacs
 PYTHON_MODE_VERSION=6.0.5
 HYPER_SPEC_VERSION=7-0
 MAGIT_VERSION=1.1.1
@@ -22,6 +23,7 @@ MAGIT_VERSION=1.1.1
 if [ ! -d $INSTALL_DIRECTORY ]; then
     mkdir $INSTALL_DIRECTORY
 fi
+
 cp src/*.el $INSTALL_DIRECTORY
 cp README $INSTALL_DIRECTORY
 cd $INSTALL_DIRECTORY
@@ -33,10 +35,12 @@ mv python-mode.el-$PYTHON_MODE_VERSION python-mode
 rm python-mode.el-$PYTHON_MODE_VERSION.tar.gz
 
 echo "Fetching HyperSpec"
+mkdir HyperSpec
+cd HyperSpec
 wget ftp://ftp.lispworks.com/pub/software_tools/reference/HyperSpec-$HYPER_SPEC_VERSION.tar.gz &> /dev/null
 tar -xf HyperSpec-$HYPER_SPEC_VERSION.tar.gz
-mv HyperSpec-$HYPER_SPEC_VERSION HyperSpec
 rm HyperSpec-$HYPER_SPEC_VERSION.tar.gz
+cd ..
 
 echo "Fetching Magit"
 wget https://github.com/downloads/magit/magit/magit-$MAGIT_VERSION.tar.gz &> /dev/null
@@ -44,18 +48,25 @@ tar -xf magit-$MAGIT_VERSION.tar.gz
 mv magit-$MAGIT_VERSION magit
 rm magit-$MAGIT_VERSION.tar.gz
 
-if [ -f ~/.emacs ]; then
+echo "Fetching Single files"
+mkdir single-files
+cd single-files
+wget http://dishevelled.net/elisp/lambda-mode.el &> /dev/null
+cd ..
+
+if [ -f $DOTEMACS ]; then
     echo "NB: Backing up .emacs to .emacs-bck"
-    mv ~/.emacs ~/.emacs-bck
-    rm ~/.emacs
+    mv $DOTEMACS ${DOTEMACS}-bck
 fi
 
-echo ";; -*- coding: utf-8 -*-" >> .emacs
-echo ";; 'The modern world uses UTF-8. Emacs is modern." >> .emacs
-echo ";; Therefore emacs uses UTF-8' -- Johanbev" >> .emacs
+touch ${DOTEMACS}
+echo ";; -*- coding: utf-8 -*-" >> ${DOTEMACS}
+echo ";; 'The modern world uses UTF-8. Emacs is modern." >> ${DOTEMACS}
+echo ";; Therefore emacs uses UTF-8.' -- Johanbev" >> ${DOTEMACS}
 
-echo "(prefer-coding-system 'utf-8)" >> .emacs
-echo '(set-language-environment "UTF-8")' >> .emacs
+echo "(prefer-coding-system 'utf-8)" >> ${DOTEMACS}
+echo '(set-language-environment "UTF-8")' >> ${DOTEMACS}
 
-echo "(add-to-list 'load-path \"${INSTALL_DIRECTORY}\")"
-echo "(require 'full-setup)"
+echo "(defvar install_directory \"${INSTALL_DIRECTORY}\")" >> ${DOTEMACS}
+echo "(add-to-list 'load-path install_directory)" >> ${DOTEMACS}
+echo "(require 'full-setup)" >> ${DOTEMACS}
