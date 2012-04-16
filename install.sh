@@ -44,3 +44,18 @@ tar -xf magit-$MAGIT_VERSION.tar.gz
 mv magit-$MAGIT_VERSION magit
 rm magit-$MAGIT_VERSION.tar.gz
 
+if [ -f ~/.emacs ]; then
+    echo "NB: Backing up .emacs to .emacs-bck"
+    mv ~/.emacs ~/.emacs-bck
+    rm ~/.emacs
+fi
+
+echo ";; -*- coding: utf-8 -*-" >> .emacs
+echo ";; 'The modern world uses UTF-8. Emacs is modern." >> .emacs
+echo ";; Therefore emacs uses UTF-8' -- Johanbev" >> .emacs
+
+echo "(prefer-coding-system 'utf-8)" >> .emacs
+echo '(set-language-environment "UTF-8")' >> .emacs
+
+echo "(add-to-list 'load-path \"${INSTALL_DIRECTORY}\")"
+echo "(require 'full-setup)"
