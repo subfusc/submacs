@@ -34,6 +34,12 @@ tar -xf python-mode.el-$PYTHON_MODE_VERSION.tar.gz
 mv python-mode.el-$PYTHON_MODE_VERSION python-mode
 rm python-mode.el-$PYTHON_MODE_VERSION.tar.gz
 
+echo "Fetching Slime"
+wget http://common-lisp.net/project/slime/snapshots/slime-current.tgz &> /dev/null
+tar -xf slime-current.tgz
+mv slime-2* slime
+rm slime-current.tgz
+
 echo "Fetching HyperSpec"
 mkdir HyperSpec
 cd HyperSpec

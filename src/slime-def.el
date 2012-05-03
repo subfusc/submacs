@@ -1,7 +1,7 @@
 ; Everything for the slime setup
 ;; SLIME PATH:
-(defvar slime-path "/usr/share/emacs/site-lisp/slime")
-(defvar swank-path "/usr/share/common-lisp/source/swank/")
+(defvar slime-path (format "%s%s" install_directory "/slime/"))
+(defvar swank-path (format "%s%s" install_directory "/slime/"))
 
 (setq inferior-lisp-program "clisp -I")
 (setq slime-backend (concat swank-path "swank-loader.lisp"))
