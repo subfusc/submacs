@@ -6,6 +6,7 @@ DOTEMACS=$HOME/.emacs
 PYTHON_MODE_VERSION=6.0.5
 HYPER_SPEC_VERSION=7-0
 MAGIT_VERSION=1.1.1
+AUTOCOMPLETE_VERSION=1.3.1
 
 if [ ! -f /usr/bin/wget ]; then
     echo "Please install wget"
@@ -86,6 +87,16 @@ function install() {
     tar -xf HyperSpec-$HYPER_SPEC_VERSION.tar.gz
     rm HyperSpec-$HYPER_SPEC_VERSION.tar.gz
     cd ..
+
+    echo "Fetching Autocomplete"
+    wget http://cx4a.org/pub/auto-complete/auto-complete-${AUTOCOMPLETE_VERSION}.tar.bz2 &> /dev/null
+    mkdir auto-complete
+    tar -xf auto-complete-${AUTOCOMPLETE_VERSION}.tar.bz2
+    cd auto-complete-${AUTOCOMPLETE_VERSION}
+    make install DIR=${INSTALL_DIRECTORY}auto-complete &> /dev/null
+    cd ..
+    rm -rf auto-complete-${AUTOCOMPLETE_VERSION}
+    rm auto-complete-*.tar.bz2
 
     echo "Fetching Magit"
     wget https://github.com/downloads/magit/magit/magit-$MAGIT_VERSION.tar.gz &> /dev/null
