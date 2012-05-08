@@ -3,7 +3,7 @@
 
 INSTALL_DIRECTORY=$HOME/.submacs/
 DOTEMACS=$HOME/.emacs
-PYTHON_MODE_VERSION=6.0.5
+PYTHON_MODE_VERSION=6.0.7
 HYPER_SPEC_VERSION=7-0
 MAGIT_VERSION=1.1.1
 AUTOCOMPLETE_VERSION=1.3.1
@@ -108,6 +108,9 @@ function install() {
     mkdir single-files
     cd single-files
     wget http://dishevelled.net/elisp/lambda-mode.el &> /dev/null
+#    wget https://github.com/purcell/ac-slime/blob/master/ac-slime.el &> /dev/null
+    wget https://raw.github.com/purcell/ac-slime/master/ac-slime.el &> /dev/null
+    wget http://nschum.de/src/emacs/guess-style/guess-style.el &> /dev/null
     cd ..
 }
 
