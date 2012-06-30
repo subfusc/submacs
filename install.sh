@@ -7,6 +7,7 @@ PYTHON_MODE_VERSION=6.0.7
 HYPER_SPEC_VERSION=7-0
 MAGIT_VERSION=1.1.1
 AUTOCOMPLETE_VERSION=1.3.1
+AUCTEX_VERSION=11.86
 
 if [ ! -f /usr/bin/wget ]; then
     echo "Please install wget"
@@ -79,6 +80,19 @@ function install() {
     tar -xf slime-current.tgz
     mv slime-2* slime
     rm slime-current.tgz
+
+    echo "Feching AuCTeX"
+    wget http://ftp.gnu.org/pub/gnu/auctex/auctex-${AUCTEX_VERSION}.tar.gz &> /dev/null
+    tar -xf auctex-${AUCTEX_VERSION}.tar.gz
+    mv auctex-${AUCTEX_VERSION} auctex
+    rm auctex-${AUCTEX_VERSION}.tar.gz
+
+    cd auctex
+    ./configure &> /dev/null
+    make &> /dev/null
+    mv auctex.el auctex-old.el
+    sed 's:../tex-site.el:tex-site.el:' < auctex-old.el > auctex.el
+    cd ..
 
     echo "Fetching HyperSpec"
     mkdir HyperSpec
