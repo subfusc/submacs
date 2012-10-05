@@ -3,7 +3,7 @@
 (require 'general)
 (require 'fancy)
 (require 'autocomplete-def)
-(require 'ibus-def)
+;(require 'ibus-def)
 (require 'slime-def)
 (require 'python-def)
 (require 'git-def)
