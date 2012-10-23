@@ -113,7 +113,7 @@ function install() {
     rm auto-complete-*.tar.bz2
 
     echo "Fetching Magit"
-    wget https://github.com/downloads/magit/magit/magit-$MAGIT_VERSION.tar.gz &> /dev/null
+    wget --no-check-certificate https://github.com/downloads/magit/magit/magit-$MAGIT_VERSION.tar.gz &> /dev/null
     tar -xf magit-$MAGIT_VERSION.tar.gz 
     mv magit-$MAGIT_VERSION magit
     rm magit-$MAGIT_VERSION.tar.gz
