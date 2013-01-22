@@ -3,7 +3,7 @@
 (defvar slime-path (format "%s%s" install_directory "/slime/"))
 (defvar swank-path (format "%s%s" install_directory "/slime/"))
 
-(setq inferior-lisp-program "sbcl")
+(setq inferior-lisp-program "sbcl --dynamic-space-size 4096")
 (setq slime-backend (concat swank-path "swank-loader.lisp"))
 (setq slime-net-coding-system 'utf-8-unix)
 (add-to-list 'load-path slime-path)

@@ -8,4 +8,5 @@
 (require 'python-def)
 (require 'git-def)
 (require 'auctex-def)
+(require 'jedi-def)
 (provide 'full-setup)
