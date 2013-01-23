@@ -3,11 +3,11 @@
 
 INSTALL_DIRECTORY=$HOME/.submacs/
 DOTEMACS=$HOME/.emacs
-PYTHON_MODE_VERSION=6.0.7
+PYTHON_MODE_VERSION=6.1.0
 HYPER_SPEC_VERSION=7-0
-MAGIT_VERSION=1.1.1
+MAGIT_VERSION=1.2.0
 AUTOCOMPLETE_VERSION=1.3.1
-AUCTEX_VERSION=11.86
+AUCTEX_VERSION=11.87
 
 if [ ! -f /usr/bin/wget ]; then
     echo "Please install wget"
@@ -113,10 +113,22 @@ function install() {
     rm auto-complete-*.tar.bz2
 
     echo "Fetching Magit"
-    wget https://github.com/downloads/magit/magit/magit-$MAGIT_VERSION.tar.gz &> /dev/null
+    wget --no-check-certificate https://github.com/downloads/magit/magit/magit-$MAGIT_VERSION.tar.gz &> /dev/null
     tar -xf magit-$MAGIT_VERSION.tar.gz 
     mv magit-$MAGIT_VERSION magit
     rm magit-$MAGIT_VERSION.tar.gz
+
+    echo "Fetching EPC"
+    git clone git://github.com/kiwanami/emacs-epc.git
+
+    echo "Fetching Jedi"
+    git clone git://github.com/tkf/emacs-jedi.git
+
+    echo "Fetching EIN"
+    git clone git://github.com/tkf/emacs-ipython-notebook.git
+
+    echo "Fetching Request"
+    git clone git://github.com/tkf/emacs-request.git
 
     echo "Fetching Single files"
     mkdir single-files
@@ -124,6 +136,10 @@ function install() {
     wget http://dishevelled.net/elisp/lambda-mode.el &> /dev/null
 #    wget https://github.com/purcell/ac-slime/blob/master/ac-slime.el &> /dev/null
     wget https://raw.github.com/purcell/ac-slime/master/ac-slime.el &> /dev/null
+    wget https://raw.github.com/kiwanami/emacs-deferred/master/deferred.el &> /dev/null
+    wget https://raw.github.com/kiwanami/emacs-deferred/master/concurrent.el &> /dev/null
+    wget https://raw.github.com/kiwanami/emacs-ctable/master/ctable.el &> /dev/null
+    wget https://raw.github.com/ahyatt/emacs-websocket/master/websocket.el &> /dev/null
     wget http://nschum.de/src/emacs/guess-style/guess-style.el &> /dev/null
     cd ..
 }

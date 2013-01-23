@@ -1,9 +1,13 @@
 (setq-default indent-tabs-mode nil)
 (setq-default tab-width 4)
+(setq py-shell-name "ipython")
 
 (add-to-list 'load-path (format "%s%s" install_directory "python-mode/"))
 (setq py-install-directory (format "%s%s" install_directory "python-mode/"))
+;(add-to-list 'load-path (format "%s%s" install_directory "emacs-ipython-notebook/"))
+;(add-to-list 'load-path (format "%s%s" install_directory "emacs-request/"))
 (require 'python-mode)
+;(require 'ein)
 
 ;; (autoload 'guess-style-set-variable "guess-style" nil t)
 ;; (autoload 'guess-style-guess-variable "guess-style")
