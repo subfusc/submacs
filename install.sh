@@ -3,7 +3,7 @@
 
 INSTALL_DIRECTORY=$HOME/.submacs/
 DOTEMACS=$HOME/.emacs
-PYTHON_MODE_VERSION=6.1.0
+PYTHON_MODE_VERSION=6.1.1
 HYPER_SPEC_VERSION=7-0
 MAGIT_VERSION=1.2.0
 AUTOCOMPLETE_VERSION=1.3.1
@@ -129,6 +129,9 @@ function install() {
 
     echo "Fetching Request"
     git clone git://github.com/tkf/emacs-request.git
+
+    echo "Fetching NewLisp Slime"
+    git clone git://github.com/kosh04/newlisp-files.git
 
     echo "Fetching Single files"
     mkdir single-files

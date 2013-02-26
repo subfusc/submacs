@@ -1,5 +1,6 @@
 (setq-default indent-tabs-mode nil)
 (setq-default tab-width 4)
+(setq-default py-split-windows-on-execute-p t)
 (setq py-shell-name "ipython")
 
 (add-to-list 'load-path (format "%s%s" install_directory "python-mode/"))

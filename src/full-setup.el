@@ -9,4 +9,5 @@
 (require 'git-def)
 (require 'auctex-def)
 (require 'jedi-def)
+(require 'newlisp-def)
 (provide 'full-setup)
