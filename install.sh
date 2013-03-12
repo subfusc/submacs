@@ -15,8 +15,8 @@ fi
 
 echo "Welcome to Subfuscs emacs Config installation"
 echo "Required installed programs for everything to work:"
-echo "slime, AUCTeX, ibus-el"
-echo "tested on emacs 23.4"
+echo "slime, AUCTeX, newlisp, python-mode, auto-complete"
+echo "tested on emacs 24.2"
 echo ""
 
 echo "Disclaimer: Packages and programs downloaded under install"
@@ -144,6 +144,7 @@ function install() {
     wget https://raw.github.com/kiwanami/emacs-ctable/master/ctable.el &> /dev/null
     wget https://raw.github.com/ahyatt/emacs-websocket/master/websocket.el &> /dev/null
     wget http://nschum.de/src/emacs/guess-style/guess-style.el &> /dev/null
+    wget https://raw.github.com/monsanto/auto-complete-auctex/master/auto-complete-auctex.el &> /dev/null
     cd ..
 }
 
