@@ -83,7 +83,7 @@ function install() {
     mv slime-2* slime
     rm slime-current.tgz
 
-    echo "Feching AuCTeX"
+    echo "Fetching AuCTeX"
     wget http://ftp.gnu.org/pub/gnu/auctex/auctex-${AUCTEX_VERSION}.tar.gz &> /dev/null
     tar -xf auctex-${AUCTEX_VERSION}.tar.gz
     mv auctex-${AUCTEX_VERSION} auctex
