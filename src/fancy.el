@@ -7,4 +7,6 @@
 (add-hook 'inferior-lisp-mode-hook #'lambda-mode 1)
 (add-hook 'python-mode-hook #'lambda-mode 1)
 
+(ido-mode)
+
 (provide 'fancy)

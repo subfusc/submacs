@@ -1,7 +1,8 @@
 #!/bin/bash
 # -*- coding: utf-8 -*-
 
-INSTALL_DIRECTORY=$HOME/.submacs/
+USER_CONFIG_DIRECTORY=${HOME}/.submacs/user_config/
+INSTALL_DIRECTORY=$HOME/.submacs/install/
 DOTEMACS=$HOME/.emacs
 PYTHON_MODE_VERSION=6.1.1
 HYPER_SPEC_VERSION=7-0
@@ -38,6 +39,7 @@ function overwrite_dotemacs() {
     echo '(set-language-environment "UTF-8")' >> ${DOTEMACS}
 
     echo "(defvar install_directory \"${INSTALL_DIRECTORY}\")" >> ${DOTEMACS}
+    echo "(add-to-list 'load-path \"${USER_CONFIG_DIRECTORY}\")" >> ${DOTEMACS}
     echo "(add-to-list 'load-path install_directory)" >> ${DOTEMACS}
     echo "(require 'full-setup)" >> ${DOTEMACS}
 }
@@ -62,7 +64,7 @@ function clean() {
 
 function install() {
     if [ ! -d $INSTALL_DIRECTORY ]; then
-	mkdir $INSTALL_DIRECTORY
+	mkdir -p $INSTALL_DIRECTORY
     fi
 
     cp src/*.el $INSTALL_DIRECTORY
@@ -149,6 +151,7 @@ function install() {
 }
 
 function newinstall() {
+    mkdir -p ${USER_CONFIG_DIRECTORY}
     install
     overwrite_dotemacs
 }
