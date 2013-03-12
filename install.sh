@@ -126,9 +126,6 @@ function install() {
     echo "Fetching Jedi"
     git clone git://github.com/tkf/emacs-jedi.git
 
-    echo "Fetching EIN"
-    git clone git://github.com/tkf/emacs-ipython-notebook.git
-
     echo "Fetching Request"
     git clone git://github.com/tkf/emacs-request.git
 

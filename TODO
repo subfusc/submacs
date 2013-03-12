@@ -1,0 +1,2 @@
+* Add flyspell to latex mode in a way so I atleast get english and norwegian corrections.
+* Check if I can use PredictionMode or AutoComplete with AuCTeX
