@@ -21,5 +21,6 @@
 ;; 				(guess-style-guess-tab-width))))
 
 (add-to-list 'auto-mode-alist '("\\.py\\'" . python-mode))
+(add-to-list 'auto-mode-alist '("\\.fcfg\\'" . python-mode))
 
 (provide 'python-def)
