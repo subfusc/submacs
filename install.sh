@@ -26,8 +26,8 @@ echo "packages homesite for information."
 
 function overwrite_dotemacs() {
     if [ -f $DOTEMACS ]; then
-	echo "NB: Backing up .emacs to .emacs-bck"
-	mv $DOTEMACS ${DOTEMACS}-bck
+	    echo "NB: Backing up .emacs to .emacs-bck"
+	    mv $DOTEMACS ${DOTEMACS}-bck
     fi
 
     touch ${DOTEMACS}
@@ -46,19 +46,19 @@ function overwrite_dotemacs() {
 
 function clean() {
     if [ $INSTALL_DIRECTORY == $HOME -o $INSTALL_DIRECTORY == / ]; then
-	echo "Listen: you don't want to clean your home directory or your root directory."
-	exit 1;
+	    echo "Listen: you don't want to clean your home directory or your root directory."
+	    exit 1;
     fi
     
     echo -ne "Are you sure you want to completely remove \"$INSTALL_DIRECTORY\" [y/N]? "
     read line
     if [ -z $line ]; then exit 0; fi
     if [ $line == y -o $line == Y ]; then
-	if [ -d $INSTALL_DIRECTORY ]; then
-	    rm -rf $INSTALL_DIRECTORY
-	fi
+	    if [ -d $INSTALL_DIRECTORY ]; then
+	        rm -rf $INSTALL_DIRECTORY
+	    fi
     else
-	exit 0;
+	    exit 0;
     fi
 }
 
@@ -163,13 +163,13 @@ OPT=NEWINSTALL
 while getopts “r” OPTION
 do
     case $OPTION in
-	r) OPT=REINSTALL;;
+	    r) OPT=REINSTALL;;
     esac
 done
 
 case $OPT in
     NEWINSTALL) 
-	newinstall;;
+	    newinstall;;
     REINSTALL) 
-	reinstall;;
+	    reinstall;;
 esac

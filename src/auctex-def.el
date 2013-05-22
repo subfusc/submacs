@@ -18,15 +18,5 @@
 	(output-pdf "Okular") 
 	(output-html "Arora"))))
 
-
-;; (add-hook 'latex-mode-hook (lambda () (flyspell-mode 1)))
-
-;; (defun fd-switch-dictionary()
-;;   (interactive)
-;;   (let* ((dic ispell-current-dictionary)
-;;     	 (change (if (string= dic "nb_NO") "en_GB" "nb_NO")))
-;;     (ispell-change-dictionary change)
-;;     (message "Dictionary switched from %s to %s" dic change)))
-
-;; (global-set-key (kbd "<f8>")   'fd-switch-dictionary)
+(add-hook 'TeX-mode-hook 'auto-fill-mode)
 (provide 'auctex-def)
