@@ -17,6 +17,7 @@ function init() {
     cp src/slime-def.el        ${SYSTEM_CONFIG_DIRECTORY}/slime-def.el
     cp src/auctex-def.el       ${SYSTEM_CONFIG_DIRECTORY}/auctex-def.el
     cp src/python-def.el       ${SYSTEM_CONFIG_DIRECTORY}/python-def.el
+    cp src/ruby-def.el         ${SYSTEM_CONFIG_DIRECTORY}/ruby-def.el
     echo ";;; Custom user mods goes here" > ${USER_CONFIG_DIRECTORY}/user-init.el
     echo "(provide 'user-init)" >> ${USER_CONFIG_DIRECTORY}/user-init.el
 }

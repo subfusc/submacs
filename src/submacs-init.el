@@ -13,4 +13,5 @@
 (require 'slime-def)
 (require 'auctex-def)
 (require 'python-def)
+(require 'ruby-def)
 (provide 'submacs-init)
