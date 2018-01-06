@@ -17,10 +17,25 @@
 	try-expand-whole-kill))
 
 (global-set-key [(meta /)] 'hippie-expand)
+
+;; Keyboard shortcuts for multiplie-cursor mode
 (global-set-key (kbd "C-S-c C-S-c") 'mc/edit-lines)
 (global-set-key (kbd "C->") 'mc/mark-next-like-this)
 (global-set-key (kbd "C-<") 'mc/mark-previous-like-this)
 (global-set-key (kbd "C-c C-<") 'mc/mark-all-like-this)
 
+(defun ask-before-closing ()
+  "Ask whether or not to close, and then close if y was pressed"
+  (interactive)
+  (if (y-or-n-p (format "Are you sure you want to exit Emacs? "))
+      (if (< emacs-major-version 22)
+          (save-buffers-kill-terminal)
+        (save-buffers-kill-emacs))
+    (message "Canceled exit")))
+
+(when window-system ;; AVOID ACCIDENTAL CLOSE OF EMACS
+  (global-set-key (kbd "C-x C-c") 'ask-before-closing)) 
+
+(add-hook 'before-save-hook 'delete-trailing-whitespace) ;; Clean file of useless whitespace on save
 
 (provide 'general)
