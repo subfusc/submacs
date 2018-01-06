@@ -10,4 +10,5 @@
 (require 'auctex-def)
 (require 'jedi-def)
 (require 'newlisp-def)
+(require 'elm-def)
 (provide 'full-setup)

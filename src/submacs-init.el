@@ -14,4 +14,5 @@
 (require 'auctex-def)
 (require 'python-def)
 (require 'ruby-def)
+(require 'elm-def)
 (provide 'submacs-init)

@@ -10,14 +10,7 @@ DOTEMACS=$HOME/.emacs
 REFRESH_PACKAGES="true"
 
 function init() {
-    cp src/submacs-init.el     ${SYSTEM_CONFIG_DIRECTORY}/submacs-init.el
-    cp src/fancy.el            ${SYSTEM_CONFIG_DIRECTORY}/fancy.el
-    cp src/general.el          ${SYSTEM_CONFIG_DIRECTORY}/general.el
-    cp src/autocomplete-def.el ${SYSTEM_CONFIG_DIRECTORY}/autocomplete-def.el
-    cp src/slime-def.el        ${SYSTEM_CONFIG_DIRECTORY}/slime-def.el
-    cp src/auctex-def.el       ${SYSTEM_CONFIG_DIRECTORY}/auctex-def.el
-    cp src/python-def.el       ${SYSTEM_CONFIG_DIRECTORY}/python-def.el
-    cp src/ruby-def.el         ${SYSTEM_CONFIG_DIRECTORY}/ruby-def.el
+    cp src/*.el     ${SYSTEM_CONFIG_DIRECTORY}
     echo ";;; Custom user mods goes here" > ${USER_CONFIG_DIRECTORY}/user-init.el
     echo "(provide 'user-init)" >> ${USER_CONFIG_DIRECTORY}/user-init.el
 }
@@ -83,6 +76,8 @@ function newinstall() {
     install_using_melpa "ac-inf-ruby"
     install_using_melpa "ruby-additional"
     install_using_melpa "ruby-block"
+    install_using_melpa "elm-mode"
+    install_using_melpa "company"
     install_using_melpa "highlight-parentheses"
     install_using_melpa "rust-mode"
     install_using_melpa "web-mode"

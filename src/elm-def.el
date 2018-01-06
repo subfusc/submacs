@@ -1,0 +1,5 @@
+(require 'elm-mode)
+(require 'company)
+(add-to-list 'company-backends 'company-elm)
+(add-hook 'elm-mode-hook 'company-mode)
+(provide 'elm-def)
