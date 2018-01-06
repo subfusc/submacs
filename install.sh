@@ -42,10 +42,10 @@ function temp_emacs_melpa_file() {
 	mv $DOTEMACS ${DOTEMACS}.bck
     fi
     
-    echo "(require 'package)"                                             > $DOTEMACS 
-    echo "(add-to-list 'package-archives"                                 >>$DOTEMACS
-    echo "'(\"melpa-stable\" . \"http://stable.melpa.org/packages/\") t)" >>$DOTEMACS
-    echo "(package-initialize)"                                           >>$DOTEMACS
+    echo "(require 'package)"                                       > $DOTEMACS
+    echo "(add-to-list 'package-archives"                           >>$DOTEMACS
+    echo "'(\"melpa\" . \"http://melpa.milkbox.net/packages/\") t)" >>$DOTEMACS
+    echo "(package-initialize)"                                     >>$DOTEMACS
 }
 
 function refresh_packages() {
