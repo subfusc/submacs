@@ -3,6 +3,7 @@
 (set-language-environment "UTF-8")
 
 (tool-bar-mode -1)
+(global-highlight-parentheses-mode)
 (fset 'yes-or-no-p 'y-or-n-p)
 
 (setq hippie-expand-try-functions-list
