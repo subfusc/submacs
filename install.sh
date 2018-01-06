@@ -85,6 +85,7 @@ function newinstall() {
     install_using_melpa "ruby-block"
     install_using_melpa "highlight-parentheses"
     install_using_melpa "rust-mode"
+    install_using_melpa "web-mode"
     init
     overwrite_dotemacs
 }
