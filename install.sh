@@ -1,161 +1,86 @@
 #!/bin/bash
 # -*- coding: utf-8 -*-
 
-USER_CONFIG_DIRECTORY=${HOME}/.submacs/user_config/
-INSTALL_DIRECTORY=$HOME/.submacs/install/
+INSTALL_DIRECTORY=$HOME/.submacs
+USER_CONFIG_DIRECTORY=${INSTALL_DIRECTORY}/user-config
+SYSTEM_CONFIG_DIRECTORY=${INSTALL_DIRECTORY}/system
 DOTEMACS=$HOME/.emacs
-PYTHON_MODE_VERSION=6.1.1
-HYPER_SPEC_VERSION=7-0
-MAGIT_VERSION=1.2.0
-AUTOCOMPLETE_VERSION=1.3.1
-AUCTEX_VERSION=11.87
 
-if [ ! -f /usr/bin/wget ]; then
-    echo "Please install wget"
-fi
 
-echo "Welcome to Subfuscs emacs Config installation"
-echo "Required installed programs for everything to work:"
-echo "slime, AUCTeX, newlisp, python-mode, auto-complete"
-echo "tested on emacs 24.2"
-echo ""
+REFRESH_PACKAGES="true"
 
-echo "Disclaimer: Packages and programs downloaded under install"
-echo "have individual licenses. Please look at each individual "
-echo "packages homesite for information."
+function init() {
+    cp src/submacs-init.el     ${SYSTEM_CONFIG_DIRECTORY}/submacs-init.el
+    cp src/fancy.el            ${SYSTEM_CONFIG_DIRECTORY}/fancy.el
+    cp src/general.el          ${SYSTEM_CONFIG_DIRECTORY}/general.el
+    cp src/autocomplete-def.el ${SYSTEM_CONFIG_DIRECTORY}/autocomplete-def.el
+    cp src/slime-def.el        ${SYSTEM_CONFIG_DIRECTORY}/slime-def.el
+    echo ";;; Custom user mods goes here" > ${USER_CONFIG_DIRECTORY}/user-init.el
+    echo "(provide 'user-init)" >> ${USER_CONFIG_DIRECTORY}/user-init.el
+}
 
 function overwrite_dotemacs() {
-    if [ -f $DOTEMACS ]; then
-	    echo "NB: Backing up .emacs to .emacs-bck"
-	    mv $DOTEMACS ${DOTEMACS}-bck
+    if [ -f ~/.emacs ]; then
+	rm $DOTEMACS
     fi
+    
+    echo "; -*- coding: utf-8 -*-"                                 > $DOTEMACS
+    echo ""                                                        >>$DOTEMACS
+    echo "(prefer-coding-system 'utf-8)"                           >>$DOTEMACS
+    echo '(set-language-environment "utf-8")'                      >>$DOTEMACS
+    echo "(add-to-list 'load-path \"${SYSTEM_CONFIG_DIRECTORY}\")" >>$DOTEMACS
+    echo "(add-to-list 'load-path \"${USER_CONFIG_DIRECTORY}\")"   >>$DOTEMACS
+    echo "(require 'submacs-init)"                                 >>$DOTEMACS
+    echo "(require 'user-init)"                                    >>$DOTEMACS
+}
 
-    touch ${DOTEMACS}
-    echo ";; -*- coding: utf-8 -*-" >> ${DOTEMACS}
-    echo ";; 'The modern world uses UTF-8. Emacs is modern." >> ${DOTEMACS}
-    echo ";; Therefore emacs uses UTF-8.' -- Johanbev" >> ${DOTEMACS}
+function temp_emacs_melpa_file() {
+    if [ -f ~/.emacs ]; then
+	mv $DOTEMACS ${DOTEMACS}.bck
+    fi
+    
+    echo "(require 'package)"                                             > $DOTEMACS 
+    echo "(add-to-list 'package-archives"                                 >>$DOTEMACS
+    echo "'(\"melpa-stable\" . \"http://stable.melpa.org/packages/\") t)" >>$DOTEMACS
+    echo "(package-initialize)"                                           >>$DOTEMACS
+}
 
-    echo "(prefer-coding-system 'utf-8)" >> ${DOTEMACS}
-    echo '(set-language-environment "UTF-8")' >> ${DOTEMACS}
+function refresh_packages() {
+    if [ $REFRESH_PACKAGES == "true" ]; then
+	emacs --batch --load ~/.emacs --eval "(package-refresh-contents)"
+	REFRESH_PACKAGES="false"
+    fi
+}
 
-    echo "(defvar install_directory \"${INSTALL_DIRECTORY}\")" >> ${DOTEMACS}
-    echo "(add-to-list 'load-path \"${USER_CONFIG_DIRECTORY}\")" >> ${DOTEMACS}
-    echo "(add-to-list 'load-path install_directory)" >> ${DOTEMACS}
-    echo "(require 'full-setup)" >> ${DOTEMACS}
+function install_using_melpa() {
+    refresh_packages
+    emacs --batch --load ~/.emacs --eval "(package-install '${1})"
 }
 
 function clean() {
-    if [ $INSTALL_DIRECTORY == $HOME -o $INSTALL_DIRECTORY == / ]; then
-	    echo "Listen: you don't want to clean your home directory or your root directory."
-	    exit 1;
-    fi
-    
-    echo -ne "Are you sure you want to completely remove \"$INSTALL_DIRECTORY\" [y/N]? "
-    read line
-    if [ -z $line ]; then exit 0; fi
-    if [ $line == y -o $line == Y ]; then
-	    if [ -d $INSTALL_DIRECTORY ]; then
-	        rm -rf $INSTALL_DIRECTORY
-	    fi
-    else
-	    exit 0;
-    fi
-}
-
-function install() {
-    if [ ! -d $INSTALL_DIRECTORY ]; then
-	mkdir -p $INSTALL_DIRECTORY
-    fi
-
-    cp src/*.el $INSTALL_DIRECTORY
-    cp README $INSTALL_DIRECTORY
-    cd $INSTALL_DIRECTORY
-
-    echo "Fetching Python Mode"
-    wget https://launchpad.net/python-mode/trunk/$PYTHON_MODE_VERSION/+download/python-mode.el-$PYTHON_MODE_VERSION.tar.gz &> /dev/null
-    tar -xf python-mode.el-$PYTHON_MODE_VERSION.tar.gz
-    mv python-mode.el-$PYTHON_MODE_VERSION python-mode
-    rm python-mode.el-$PYTHON_MODE_VERSION.tar.gz
-
-    echo "Fetching Slime"
-    wget http://common-lisp.net/project/slime/snapshots/slime-current.tgz &> /dev/null
-    tar -xf slime-current.tgz
-    mv slime-2* slime
-    rm slime-current.tgz
-
-    echo "Fetching AuCTeX"
-    wget http://ftp.gnu.org/pub/gnu/auctex/auctex-${AUCTEX_VERSION}.tar.gz &> /dev/null
-    tar -xf auctex-${AUCTEX_VERSION}.tar.gz
-    mv auctex-${AUCTEX_VERSION} auctex
-    rm auctex-${AUCTEX_VERSION}.tar.gz
-
-    cd auctex
-    ./configure &> /dev/null
-    make &> /dev/null
-    mv auctex.el auctex-old.el
-    sed 's:../tex-site.el:tex-site.el:' < auctex-old.el > auctex.el
-    cd ..
-
-    echo "Fetching HyperSpec"
-    mkdir HyperSpec
-    cd HyperSpec
-    wget ftp://ftp.lispworks.com/pub/software_tools/reference/HyperSpec-$HYPER_SPEC_VERSION.tar.gz &> /dev/null
-    tar -xf HyperSpec-$HYPER_SPEC_VERSION.tar.gz
-    rm HyperSpec-$HYPER_SPEC_VERSION.tar.gz
-    cd ..
-
-    echo "Fetching Autocomplete"
-    wget http://cx4a.org/pub/auto-complete/auto-complete-${AUTOCOMPLETE_VERSION}.tar.bz2 &> /dev/null
-    mkdir auto-complete
-    tar -xf auto-complete-${AUTOCOMPLETE_VERSION}.tar.bz2
-    cd auto-complete-${AUTOCOMPLETE_VERSION}
-    make install DIR=${INSTALL_DIRECTORY}auto-complete &> /dev/null
-    cd ..
-    rm -rf auto-complete-${AUTOCOMPLETE_VERSION}
-    rm auto-complete-*.tar.bz2
-
-    echo "Fetching Magit"
-    wget --no-check-certificate https://github.com/downloads/magit/magit/magit-$MAGIT_VERSION.tar.gz &> /dev/null
-    tar -xf magit-$MAGIT_VERSION.tar.gz 
-    mv magit-$MAGIT_VERSION magit
-    rm magit-$MAGIT_VERSION.tar.gz
-
-    echo "Fetching EPC"
-    git clone git://github.com/kiwanami/emacs-epc.git
-
-    echo "Fetching Jedi"
-    git clone git://github.com/tkf/emacs-jedi.git
-
-    echo "Fetching Request"
-    git clone git://github.com/tkf/emacs-request.git
-
-    echo "Fetching NewLisp Slime"
-    git clone git://github.com/kosh04/newlisp-files.git
-
-    echo "Fetching Single files"
-    mkdir single-files
-    cd single-files
-    wget http://dishevelled.net/elisp/lambda-mode.el &> /dev/null
-#    wget https://github.com/purcell/ac-slime/blob/master/ac-slime.el &> /dev/null
-    wget https://raw.github.com/purcell/ac-slime/master/ac-slime.el &> /dev/null
-    wget https://raw.github.com/kiwanami/emacs-deferred/master/deferred.el &> /dev/null
-    wget https://raw.github.com/kiwanami/emacs-deferred/master/concurrent.el &> /dev/null
-    wget https://raw.github.com/kiwanami/emacs-ctable/master/ctable.el &> /dev/null
-    wget https://raw.github.com/ahyatt/emacs-websocket/master/websocket.el &> /dev/null
-    wget http://nschum.de/src/emacs/guess-style/guess-style.el &> /dev/null
-    wget https://raw.github.com/monsanto/auto-complete-auctex/master/auto-complete-auctex.el &> /dev/null
-    cd ..
+    rm -rfv ${SYSTEM_CONFIG_DIRECTORY}
+    rm ~/.emacs
 }
 
 function newinstall() {
     mkdir -p ${USER_CONFIG_DIRECTORY}
-    install
+    mkdir -p ${SYSTEM_CONFIG_DIRECTORY}
+    temp_emacs_melpa_file
+    cat $DOTEMACS
+    install_using_melpa "pretty-lambdada"
+    install_using_melpa "multiple-cursors"
+    install_using_melpa "mc-extras"
+    install_using_melpa "auto-complete"
+    install_using_melpa "slime"
+    install_using_melpa "ac-slime"
+    init
     overwrite_dotemacs
 }
 
+
 function reinstall() {
     clean
-    install
+    newinstall
 }
 
 OPT=NEWINSTALL
