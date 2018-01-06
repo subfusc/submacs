@@ -1,11 +1,5 @@
 ;; -*- coding: utf-8 -*-
 ;; Configuration for AuCTeX, because I want PDF not DVI.
-(add-to-list 'load-path (format "%s%s" install_directory "auctex"))
-(add-to-list 'load-path (format "%s%s" install_directory "auctex/preview"))
-
-
-(load "auctex.el" nil t t)
-(load "preview-latex.el" nil t t)
 (setq TeX-PDF-mode t)
 
 ;; Some more KDE friendly configuration options for viewers.

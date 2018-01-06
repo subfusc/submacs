@@ -15,6 +15,8 @@ function init() {
     cp src/general.el          ${SYSTEM_CONFIG_DIRECTORY}/general.el
     cp src/autocomplete-def.el ${SYSTEM_CONFIG_DIRECTORY}/autocomplete-def.el
     cp src/slime-def.el        ${SYSTEM_CONFIG_DIRECTORY}/slime-def.el
+    cp src/auctex-def.el       ${SYSTEM_CONFIG_DIRECTORY}/auctex-def.el
+    cp src/python-def.el       ${SYSTEM_CONFIG_DIRECTORY}/python-def.el
     echo ";;; Custom user mods goes here" > ${USER_CONFIG_DIRECTORY}/user-init.el
     echo "(provide 'user-init)" >> ${USER_CONFIG_DIRECTORY}/user-init.el
 }
@@ -74,6 +76,8 @@ function newinstall() {
     install_using_melpa "slime"
     install_using_melpa "ac-slime"
     install_using_melpa "magit"
+    install_using_melpa "auctex"
+    install_using_melpa "jedi"
     init
     overwrite_dotemacs
 }

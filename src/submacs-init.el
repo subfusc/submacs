@@ -11,4 +11,6 @@
 (require 'fancy)
 (require 'autocomplete-def)
 (require 'slime-def)
+(require 'auctex-def)
+(require 'python-def)
 (provide 'submacs-init)

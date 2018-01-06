@@ -15,4 +15,5 @@ This is a complete configuration for emacs 24.2, provided as is.
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 
-Provides python-mode setup, auctex setup, slime setup, newlisp setup, autocomplete setup and git setup.
+Require system install of LaTeX, SBCL and python virtualenv
+Provides python setup, auctex setup, slime setup, autocomplete setup and git setup.
