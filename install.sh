@@ -73,6 +73,7 @@ function newinstall() {
     install_using_melpa "auto-complete"
     install_using_melpa "slime"
     install_using_melpa "ac-slime"
+    install_using_melpa "magit"
     init
     overwrite_dotemacs
 }
