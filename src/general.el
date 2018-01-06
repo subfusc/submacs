@@ -34,8 +34,13 @@
     (message "Canceled exit")))
 
 (when window-system ;; AVOID ACCIDENTAL CLOSE OF EMACS
-  (global-set-key (kbd "C-x C-c") 'ask-before-closing)) 
+  (global-set-key (kbd "C-x C-c") 'ask-before-closing))
 
 (add-hook 'before-save-hook 'delete-trailing-whitespace) ;; Clean file of useless whitespace on save
+
+(custom-set-variables
+ '(ansi-color-names-vector
+   ["#212526" "#ff4b4b" "#b4fa70" "#fce94f" "#729fcf" "#e090d7" "#8cc4ff" "#eeeeec"])
+ '(custom-enabled-themes (quote (tsdh-dark))))
 
 (provide 'general)
