@@ -26,7 +26,7 @@ function overwrite_dotemacs() {
     if [ -f ~/.emacs ]; then
 	rm $DOTEMACS
     fi
-    
+
     echo "; -*- coding: utf-8 -*-"                                 > $DOTEMACS
     echo ""                                                        >>$DOTEMACS
     echo "(prefer-coding-system 'utf-8)"                           >>$DOTEMACS
@@ -41,7 +41,7 @@ function temp_emacs_melpa_file() {
     if [ -f ~/.emacs ]; then
 	mv $DOTEMACS ${DOTEMACS}.bck
     fi
-    
+
     echo "(require 'package)"                                       > $DOTEMACS
     echo "(add-to-list 'package-archives"                           >>$DOTEMACS
     echo "'(\"melpa\" . \"http://melpa.milkbox.net/packages/\") t)" >>$DOTEMACS
@@ -84,6 +84,7 @@ function newinstall() {
     install_using_melpa "ruby-additional"
     install_using_melpa "ruby-block"
     install_using_melpa "highlight-parentheses"
+    install_using_melpa "rust-mode"
     init
     overwrite_dotemacs
 }
@@ -104,8 +105,8 @@ do
 done
 
 case $OPT in
-    NEWINSTALL) 
+    NEWINSTALL)
 	    newinstall;;
-    REINSTALL) 
+    REINSTALL)
 	    reinstall;;
 esac
