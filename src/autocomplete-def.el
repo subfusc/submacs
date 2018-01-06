@@ -7,5 +7,6 @@
 (add-to-list 'ac-modes 'emacs-lisp-mode)
 (add-to-list 'ac-modes 'slime-mode)
 (add-to-list 'ac-modes 'lisp-mode)
+(add-to-list 'ac-modes 'ruby-mode)
 
 (provide 'autocomplete-def)
