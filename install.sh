@@ -75,7 +75,6 @@ function newinstall() {
     install_using_melpa "inf-ruby"
     install_using_melpa "ac-inf-ruby"
     install_using_melpa "ruby-additional"
-    install_using_melpa "ruby-block"
     install_using_melpa "elm-mode"
     install_using_melpa "company"
     install_using_melpa "highlight-parentheses"
