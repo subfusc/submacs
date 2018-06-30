@@ -17,17 +17,18 @@ function init() {
 
 function overwrite_dotemacs() {
     if [ -f ~/.emacs ]; then
-	rm $DOTEMACS
+	    rm $DOTEMACS
     fi
 
-    echo "; -*- coding: utf-8 -*-"                                 > $DOTEMACS
-    echo ""                                                        >>$DOTEMACS
-    echo "(prefer-coding-system 'utf-8)"                           >>$DOTEMACS
-    echo '(set-language-environment "utf-8")'                      >>$DOTEMACS
-    echo "(add-to-list 'load-path \"${SYSTEM_CONFIG_DIRECTORY}\")" >>$DOTEMACS
-    echo "(add-to-list 'load-path \"${USER_CONFIG_DIRECTORY}\")"   >>$DOTEMACS
-    echo "(require 'submacs-init)"                                 >>$DOTEMACS
-    echo "(require 'user-init)"                                    >>$DOTEMACS
+    echo "; -*- coding: utf-8 -*-"                                            > $DOTEMACS
+    echo ""                                                                   >>$DOTEMACS
+    echo "(prefer-coding-system 'utf-8)"                                      >>$DOTEMACS
+    echo '(set-language-environment "utf-8")'                                 >>$DOTEMACS
+    echo "(add-to-list 'load-path \"${SYSTEM_CONFIG_DIRECTORY}\")"            >>$DOTEMACS
+    echo "(add-to-list 'load-path \"${SYSTEM_CONFIG_DIRECTORY}/ruby-block\")" >>$DOTEMACS
+    echo "(add-to-list 'load-path \"${USER_CONFIG_DIRECTORY}\")"              >>$DOTEMACS
+    echo "(require 'submacs-init)"                                            >>$DOTEMACS
+    echo "(require 'user-init)"                                               >>$DOTEMACS
 }
 
 function temp_emacs_melpa_file() {
@@ -80,6 +81,7 @@ function newinstall() {
     install_using_melpa "highlight-parentheses"
     install_using_melpa "rust-mode"
     install_using_melpa "web-mode"
+    git clone git@github.com:subfusc/ruby-block ${SYSTEM_CONFIG_DIRECTORY}/ruby-block
     init
     overwrite_dotemacs
 }
