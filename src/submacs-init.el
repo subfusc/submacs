@@ -5,7 +5,6 @@
 
 (when (< emacs-major-version 24)
   (add-to-list 'package-archives '("gnu" . "http://elpa.gnu.org/packages/")))
-(package-initialize)
 
 (require 'general)
 (require 'fancy)
