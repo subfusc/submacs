@@ -80,6 +80,7 @@ function newinstall() {
     install_using_melpa "highlight-parentheses"
     install_using_melpa "rust-mode"
     install_using_melpa "web-mode"
+    install_using_melpa "markdown-mode"
     git clone git@github.com:subfusc/ruby-block ${SYSTEM_CONFIG_DIRECTORY}/ruby-block
     init
     overwrite_dotemacs
