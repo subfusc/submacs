@@ -3,7 +3,7 @@
   (setq prettify-symbols-alist
         '(
           ("lambda" . 955) ; λ
-          ))
+          )))
 (add-hook 'scheme-mode-hook 'my-pretty-lambda)
 (global-prettify-symbols-mode 1)
 
