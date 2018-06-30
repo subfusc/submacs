@@ -64,7 +64,6 @@ function newinstall() {
     mkdir -p ${SYSTEM_CONFIG_DIRECTORY}
     temp_emacs_melpa_file
     cat $DOTEMACS
-    install_using_melpa "pretty-lambdada"
     install_using_melpa "multiple-cursors"
     install_using_melpa "mc-extras"
     install_using_melpa "auto-complete"
