@@ -25,7 +25,7 @@ function overwrite_dotemacs() {
     echo "(prefer-coding-system 'utf-8)"                                      >>$DOTEMACS
     echo '(set-language-environment "utf-8")'                                 >>$DOTEMACS
     echo "(add-to-list 'load-path \"${SYSTEM_CONFIG_DIRECTORY}\")"            >>$DOTEMACS
-    echo "(add-to-list 'load-path \"${SYSTEM_CONFIG_DIRECTORY}/ruby-block\")" >>$DOTEMACS
+    # echo "(add-to-list 'load-path \"${SYSTEM_CONFIG_DIRECTORY}/ruby-block\")" >>$DOTEMACS
     echo "(add-to-list 'load-path \"${USER_CONFIG_DIRECTORY}\")"              >>$DOTEMACS
     echo "(require 'submacs-init)"                                            >>$DOTEMACS
     echo "(require 'user-init)"                                               >>$DOTEMACS
@@ -65,23 +65,9 @@ function newinstall() {
     temp_emacs_melpa_file
     cat $DOTEMACS
     install_using_melpa "multiple-cursors"
-    install_using_melpa "mc-extras"
-    install_using_melpa "auto-complete"
-    install_using_melpa "slime"
-    install_using_melpa "ac-slime"
     install_using_melpa "magit"
-    install_using_melpa "auctex"
-    install_using_melpa "jedi"
-    install_using_melpa "inf-ruby"
-    install_using_melpa "ac-inf-ruby"
-    install_using_melpa "ruby-additional"
-    install_using_melpa "elm-mode"
-    install_using_melpa "company"
-    install_using_melpa "highlight-parentheses"
-    install_using_melpa "rust-mode"
-    install_using_melpa "web-mode"
-    install_using_melpa "markdown-mode"
-    git clone git@github.com:subfusc/ruby-block ${SYSTEM_CONFIG_DIRECTORY}/ruby-block
+
+    # git clone git@github.com:subfusc/ruby-block ${SYSTEM_CONFIG_DIRECTORY}/ruby-block
     init
     overwrite_dotemacs
 }
