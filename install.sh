@@ -66,6 +66,9 @@ function newinstall() {
     cat $DOTEMACS
     install_using_melpa "multiple-cursors"
     install_using_melpa "magit"
+    install_using_melpa "markdown-mode"
+    install_using_melpa "robe"
+    install_using_melpa "company"
 
     # git clone git@github.com:subfusc/ruby-block ${SYSTEM_CONFIG_DIRECTORY}/ruby-block
     init

@@ -7,4 +7,6 @@
 (require 'basic-functionality)
 (require 'magit-setup)
 (require 'multiple-cursors-setup)
+(require 'company-setup)
+(require 'ruby-setup)
 (provide 'submacs-init)
