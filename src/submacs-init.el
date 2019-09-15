@@ -10,4 +10,5 @@
 (require 'multiple-cursors-setup)
 (require 'company-setup)
 (require 'ruby-setup)
+(require 'rust-setup)
 (provide 'submacs-init)
