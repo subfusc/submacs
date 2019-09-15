@@ -6,6 +6,8 @@
 (global-prettify-symbols-mode 1) ; enable visual conversion of some symbols
 (ido-mode 1)
 
+(setq column-number-mode 1)
+
 ;; Add preffered theme and colors.
 (custom-set-variables
  '(ansi-color-names-vector
