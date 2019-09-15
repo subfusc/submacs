@@ -5,6 +5,7 @@
 
 (require 'looks)
 (require 'basic-functionality)
+(require 'whitespace-setup)
 (require 'magit-setup)
 (require 'multiple-cursors-setup)
 (require 'company-setup)
