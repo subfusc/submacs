@@ -1,6 +1,6 @@
 ;; -*- coding: utf-8 -*-
 (require 'whitespace)
-(setq whitespace-style '(face empty tabs line-trail trailing))
+(setq whitespace-style '(face empty tabs lines-tail trailing))
 
 (custom-set-variables
  '(whitespace-line-column 100))
