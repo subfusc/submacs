@@ -11,7 +11,8 @@
 (require 'company-setup)
 (require 'ruby-setup)
 (require 'rust-setup)
+(require 'elm-setup)
 
 (defun submacs-version ()
-    (message "0.2a"))
+    (message "0.3a"))
 (provide 'submacs-init)

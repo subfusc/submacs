@@ -2,19 +2,11 @@
 (require 'company)
 (require 'robe)
 (require 'whitespace)
+(require 'submacs-functions)
 
 ;; Check for rbenv and set the paths to allow robe to use the shims
-(if (file-exists-p (concat (getenv "HOME") "/.rbenv/shims"))
-    (progn
-      (unless (string-match ".rbenv/shims" (getenv "PATH"))
-	(setenv "PATH"
-		(concat (getenv "HOME") "/.rbenv/shims:" (getenv "PATH"))))
-      (let ((found nil))
-	(dolist (element exec-path)
-	  (if (string-match ".rbenv/shims" element)
-	      (setq found \t)))
-	(unless found
-	  (push (concat (getenv "HOME") "/.rbenv/shims") exec-path)))))
+(let ((rbenv-dir (concat (getenv "HOME") "/.rbenv/shims")))
+  (if (file-exists-p rbenv-dir) (extend-emacs-executable-paths rbenv-dir)))
 
 (eval-after-load 'company
   '(push 'company-robe company-backends))

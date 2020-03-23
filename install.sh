@@ -5,7 +5,7 @@ INSTALL_DIRECTORY=$HOME/.submacs
 USER_CONFIG_DIRECTORY=${INSTALL_DIRECTORY}/user-config
 SYSTEM_CONFIG_DIRECTORY=${INSTALL_DIRECTORY}/system
 DOTEMACS=$HOME/.emacs
-
+EXECUTABLE=remacs
 
 REFRESH_PACKAGES="true"
 
@@ -44,14 +44,18 @@ function temp_emacs_melpa_file() {
 
 function refresh_packages() {
     if [ $REFRESH_PACKAGES == "true" ]; then
-	emacs --batch --load ~/.emacs --eval "(package-refresh-contents)"
+	$EXECUTABLE --batch --load ~/.emacs --eval "(package-refresh-contents)"
 	REFRESH_PACKAGES="false"
     fi
 }
 
 function install_using_melpa() {
     refresh_packages
-    emacs --batch --load ~/.emacs --eval "(package-install '${1})"
+    $EXECUTABLE --batch --load ~/.emacs --eval "(package-install '${1})"
+}
+
+function update_gnu_keyring() {
+    $EXECUTABLE --batch --eval "(progn (require 'package) (package-initialize) (setq package-check-signature nil) (package-refresh-contents) (package-install 'gnu-elpa-keyring-update) (setq package-check-signature 'allow-unsigned))"
 }
 
 function clean() {
@@ -62,6 +66,7 @@ function clean() {
 function newinstall() {
     mkdir -p ${USER_CONFIG_DIRECTORY}
     mkdir -p ${SYSTEM_CONFIG_DIRECTORY}
+    update_gnu_keyring
     temp_emacs_melpa_file
     cat $DOTEMACS
     install_using_melpa "multiple-cursors"
@@ -70,8 +75,11 @@ function newinstall() {
     install_using_melpa "robe"
     install_using_melpa "racer"
     install_using_melpa "company"
+    install_using_melpa "elm-mode"
+    install_using_melpa "hy-mode"
+    install_using_melpa "lsp-mode"
 
-    # git clone git@github.com:subfusc/ruby-block ${SYSTEM_CONFIG_DIRECTORY}/ruby-block
+    git clone git@github.com:subfusc/ruby-block ${SYSTEM_CONFIG_DIRECTORY}/ruby-block
     init
     overwrite_dotemacs
 }

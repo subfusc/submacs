@@ -8,6 +8,11 @@
         (save-buffers-kill-emacs))
     (message "Canceled exit")))
 
+(require 'paren)
+(setq show-paren-style 'parenthesis)
+(show-paren-mode +1)
+
+
 (when window-system ;; AVOID ACCIDENTAL CLOSE OF EMACS
   (global-set-key (kbd "C-x C-c") 'ask-before-closing))
 
