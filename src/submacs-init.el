@@ -12,6 +12,7 @@
 (require 'ruby-setup)
 (require 'rust-setup)
 (require 'elm-setup)
+(require 'hy-setup)
 
 (defun submacs-version ()
     (message "0.3a"))
