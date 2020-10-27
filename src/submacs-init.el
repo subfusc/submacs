@@ -10,6 +10,7 @@
 (require 'rust-setup)
 (require 'elm-setup)
 (require 'hy-setup)
+(require 'shell-setup)
 
 (defun submacs-version ()
     (message "0.3a"))

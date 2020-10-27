@@ -17,7 +17,7 @@
   (global-set-key (kbd "C-x C-c") 'ask-before-closing))
 
 (add-hook 'before-save-hook 'delete-trailing-whitespace) ;; Clean file of useless whitespace on save
-
 (fset 'yes-or-no-p 'y-or-n-p) ; Don't need to write the entire word all the time
+(setq standard-ident 2)
 
 (provide 'basic-functionality)
