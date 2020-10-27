@@ -12,6 +12,5 @@
 (require 'hy-setup)
 (require 'shell-setup)
 
-(defun submacs-version ()
-    (message "0.3a"))
+(defun submacs-version () (message "0.4a"))
 (provide 'submacs-init)
