@@ -1,8 +1,5 @@
 ;;; Install the melpa archive in emacs
-(require 'package)
-(add-to-list 'package-archives
-	     '("melpa" . "http://melpa.milkbox.net/packages/") t)
-
+(require 'melpa)
 (require 'looks)
 (require 'basic-functionality)
 (require 'whitespace-setup)
