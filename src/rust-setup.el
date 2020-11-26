@@ -4,7 +4,7 @@
 (extend-emacs-executable-paths (concat (getenv "HOME") "/.cargo/bin"))
 (setq racer-rust-src-path
       (concat (string-trim (shell-command-to-string "rustc --print sysroot"))
-	      "/lib/rustlib/src/rust/src"))
+	      "/lib/rustlib/src/rust/library"))
 
 
 (add-hook 'rust-mode-hook #'racer-mode)
