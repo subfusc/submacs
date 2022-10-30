@@ -1,13 +1,28 @@
 ;; -*- coding: utf-8 -*-
 
-(package-refresh-contents)
+(require 'package)
+(package-initialize)
 
-(package-install 'multiple-cursors)
-(package-install 'magit)
-(package-install 'markdown-mode)
-(package-install 'robe)
-(package-install 'racer)
-(package-install 'company)
-(package-install 'elm-mode)
-(package-install 'hy-mode)
-(package-install 'lsp-mode)
+(setq wanted-packages
+      '(dart-mode
+	lsp-mode
+	lsp-dart
+	lsp-treemacs
+	flycheck
+	company
+	lsp-ui
+	hover
+	;; Dart packages
+	robe
+	;; Ruby
+	rust-mode
+	;; Rust
+	multiple-cursors
+	magit
+	markdown-mode
+	;; Productivity
+	))
+
+(when (cl-find-if-not #'package-installed-p wanted-packages)
+  (package-refresh-contents)
+  (mapc #'package-install wanted-packages))

@@ -8,9 +8,8 @@
 (require 'company-setup)
 (require 'ruby-setup)
 (require 'rust-setup)
-(require 'elm-setup)
-(require 'hy-setup)
 (require 'shell-setup)
+(require 'dart-setup)
 
 (defun submacs-version () (message "0.4a"))
 (provide 'submacs-init)
