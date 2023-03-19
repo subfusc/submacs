@@ -1,4 +1,5 @@
 (require 'dart-mode)
+(require 'lsp-setup)
 
 ;; The auto formater for dart is really not god IMO.
 (custom-set-variables
@@ -9,4 +10,5 @@
 
 (setq gc-cons-threshold (* 100 1024 1024)
       read-process-output-max (* 1024 1024))
+
 (provide 'dart-setup)

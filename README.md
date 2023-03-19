@@ -1,9 +1,9 @@
 # Submacs
 
-This is my personal setup of (r)emacs, tested on 26+.
+This is my personal setup of (r)emacs, tested on 27+.
 
 ## Required stuff
 
-- `rustup` & `racer`
-- `ruby` & `bundler`
-- `nvm` & `elm elm-language-server elm-format`
+- go / gofmt  1.18 or newer
+- python 3.11 / pyright
+- Markdown
