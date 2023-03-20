@@ -17,7 +17,7 @@
 ;; Font configuration. Use Noto for now as it seems like the most cross distro used one
 (custom-set-faces
  '(default ((t (:family "Noto Sans Mono" :foundry "GOOG" :slant normal
-			:weight normal :height 107 :width normal)))))
+                        :weight normal :height 107 :width normal)))))
 
 ;; Configure common Symbol conversions
 (setq prettify-symbols-alist '(("lambda" . ?λ)
@@ -25,14 +25,14 @@
                                ("->>" . ?↠)
                                ("=>" . ?⇒)
                                ("map" . ?↦)
-			       ("sum" . ?∑)
+                               ("sum" . ?∑)
                                ("/=" . ?≠)
                                ("!=" . ?≠)
                                ("==" . ?≡)
                                ("<=" . ?≤)
                                (">=" . ?≥)
-			       ("=~" . ?≈)
-			       ("!~" . ?≉)
+                               ("=~" . ?≈)
+                               ("!~" . ?≉)
                                ("<=<" . ?↢)
                                (">=>" . ?↣)
                                ("&&" . ?∧)
