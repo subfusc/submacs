@@ -9,6 +9,7 @@
 
 ;; Add preffered theme and colors.
 (custom-set-variables
+ '(tab-width 2) ;; Jebus the default is 8
  '(ansi-color-names-vector
    ["#212526" "#ff4b4b" "#b4fa70" "#fce94f" "#729fcf" "#e090d7" "#8cc4ff" "#eeeeec"])
  '(custom-enabled-themes (quote (wombat))))
@@ -36,7 +37,7 @@
                                (">=>" . ?↣)
                                ("&&" . ?∧)
                                ("||" . ?∨)
-                               ("not" . ?¬))))
+                               ("not" . ?¬)))
 
 ;; Show matching parenthesis
 (require 'paren)
