@@ -12,6 +12,7 @@
 (require 'shell-setup)
 (require 'dart-setup)
 (require 'go-setup)
+(require 'elisp-setup)
 
 (defun submacs-version () (message "0.5a"))
 (provide 'submacs-init)
