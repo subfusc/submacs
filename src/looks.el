@@ -2,7 +2,7 @@
 ;; Mah visual settings and configuration options for my EMACS
 
 (tool-bar-mode -1) ;; Remove the icon toolbar
-(scroll-bar-mode -1) ;; Remove the scrollbars
+(if (fboundp 'scroll-bar-mode) (scroll-bar-mode -1)) ;; Remove the scrollbars
 (global-prettify-symbols-mode 1) ;; enable visual conversion of some symbols
 (setq column-number-mode 0) ;; Char number on bar. Don't need it
 (setq standard-ident 2) ;; I like to have 2 "space" indents. I might change it when i get worse eyesight
@@ -19,8 +19,9 @@
  '(default ((t (:family "Noto Sans Mono" :foundry "GOOG" :slant normal
                         :weight normal :height 107 :width normal)))))
 
-(set-fontset-font t '(#x1f000 . #x1faff) ;; We want emojis
-              (font-spec :family "Noto Color Emoji"))
+(if (fboundp 'set-fontset-font)
+		(set-fontset-font t '(#x1f000 . #x1faff) ;; We want emojis
+											(font-spec :family "Noto Color Emoji")))
 
 ;; Configure common Symbol conversions
 (setq prettify-symbols-alist '(("lambda" . ?λ)
