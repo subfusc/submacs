@@ -4,24 +4,25 @@
 (package-initialize)
 
 (setq wanted-packages
-      '(dart-mode
-	lsp-mode
-	lsp-dart
+      ;; Auto-complete/ LSP / DAP packages
+      '(lsp-mode
 	lsp-treemacs
+	dap-mode
 	flycheck
 	company
 	lsp-ui
 	hover
 	;; Dart packages
-	robe
-	;; Ruby
-	rust-mode
-	;; Rust
-	multiple-cursors
-	magit
-	markdown-mode
+	dart-mode
+	lsp-dart
+	;; Go Packages
+	go-mode
+	;; Ruby Packages
+	ruby-mode
 	;; Productivity
-	))
+	multiple-cursors	
+	magit
+	markdown-mode))
 
 (when (cl-find-if-not #'package-installed-p wanted-packages)
   (package-refresh-contents)
