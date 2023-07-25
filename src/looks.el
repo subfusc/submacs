@@ -48,15 +48,4 @@
 (setq show-paren-style 'parenthesis) ;; can be mixed, expression or parenthesis
 (show-paren-mode 1)
 
-;; Configure how whitespace should behave
-(require 'whitespace)
-
-(custom-set-variables
- '(whitespace-style (face empty tabs lines-tail trailing))
- '(whitespace-line-column 100)) ;; How long the lines maximally should be before marking them as too long
-
-(custom-set-faces
- '(my-long-line-face ((((class color)) (:background "red"))) t)
- '(whitespace-line ((t (:background "red")))))
-
 (provide 'looks)
