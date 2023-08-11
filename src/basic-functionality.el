@@ -6,6 +6,7 @@
 (fset 'yes-or-no-p 'y-or-n-p) ;; Don't need to write the entire word all the time
 (setq indent-tabs-mode nil) ;; Tabs always causes fuckups, so never have them
 
+(windmove-default-keybindings)
 (when window-system ;; AVOID ACCIDENTAL CLOSE OF EMACS
   (global-set-key (kbd "C-x C-c") 'ask-before-closing))
 
