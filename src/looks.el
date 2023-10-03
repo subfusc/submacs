@@ -43,6 +43,12 @@
                                ("||" . ?∨)
                                ("not" . ?¬)))
 
+(defun always-two-in-width-window-split (x)
+		(setq split-width-threshold
+					(+ 1 (/ (cadddr (assoc 'workarea (car (display-monitor-attributes-list)))) 2))))
+
+(setq window-size-change-functions '(always-two-in-width-window-split))
+
 ;; Show matching parenthesis
 (require 'paren)
 (setq show-paren-style 'parenthesis) ;; can be mixed, expression or parenthesis
