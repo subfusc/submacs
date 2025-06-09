@@ -11,6 +11,8 @@ BATCH_ARGS="-u ${USER} --batch"
 REFRESH_PACKAGES="true"
 
 function copy_submacs_files() {
+	mkdir -p ${SYSTEM_CONFIG_DIRECTORY}/themes
+	cp themes/*.el ${SYSTEM_CONFIG_DIRECTORY}/themes
   cp src/*.el ${SYSTEM_CONFIG_DIRECTORY}
   git clone git@github.com:subfusc/ruby-block ${SYSTEM_CONFIG_DIRECTORY}/ruby-block
 
@@ -40,6 +42,7 @@ function pre_install_dotemacs() {
 function add_load_paths_to_submacs() {
   echo "(add-to-list 'load-path \"${SYSTEM_CONFIG_DIRECTORY}/ruby-block\")" >>$DOTEMACS
   echo "(add-to-list 'load-path \"${USER_CONFIG_DIRECTORY}\")"              >>$DOTEMACS
+	echo "(add-to-list 'load-path \"${SYSTEM_CONFIG_DIRECTORY}/themes\")"     >>$DOTEMACS
   echo "(require 'submacs-init)"                                            >>$DOTEMACS
   echo "(require 'user-init)"                                               >>$DOTEMACS
 }
@@ -60,7 +63,6 @@ function clean() {
 
 function newinstall() {
   pre_install_dotemacs
-  update_gnu_keyring
   install_packages
   copy_submacs_files
   add_load_paths_to_submacs
